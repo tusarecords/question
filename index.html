@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUSA</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        background-color: #131313;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+
+      input {
+        padding: 10px;
+        width: calc(100% - 22px);
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="container">
+        <form id="tusaForm">
+          <label for="answer">O QUE TE DÁ TUSA?</label><br />
+          <input type="text" id="answer" required /><br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </main>
+
+    <!-- Supabase Script -->
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+      // ⛏️ Replace with your Supabase project URL and anon key
+      const supabaseUrl = "https://jgcfulwuestsayktuiax.supabase.co"; // ← replace this
+      const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnY2Z1bHd1ZXN0c2F5a3R1aWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwMzg4ODksImV4cCI6MjA1OTYxNDg4OX0.xL6zmXQ800BhqB9HvptMuYdlUj69O71KrWBt3JlvvLo"; // ← and this
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      const form = document.getElementById("tusaForm");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // prevents page refresh
+
+        const answer = document.getElementById("answer").value;
+
+        const { data, error } = await supabase
+          .from("respostas") // ← your table name
+          .insert([{ answer }]);
+
+        if (error) {
+          alert("Erro ao enviar resposta.");
+          console.error(error);
+        } else {
+          alert("Tusa recebida com sucesso!");
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
