@@ -1,54 +1,54 @@
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Thin.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Thin.ttf") format('truetype');
   font-weight: 100
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-ExtraLight.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-ExtraLight.ttf") format('truetype');
   font-weight: 200
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Light.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Light.ttf") format('truetype');
   font-weight: 300
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Regular.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Regular.ttf") format('truetype');
   font-weight: 400
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Medium.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Medium.ttf") format('truetype');
   font-weight: 500
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Bold.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Bold.ttf") format('truetype');
   font-weight: 600
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-ExtraBold.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-ExtraBold.ttf") format('truetype');
   font-weight: 700
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-Black.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-Black.ttf") format('truetype');
   font-weight: 800
 }
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url("/fonts/NeueHaasUnica-ExtraBlack.ttf") format('truetype');
+  src: url("/question/fonts/NeueHaasUnica-ExtraBlack.ttf") format('truetype');
   font-weight: 900
 }
 
