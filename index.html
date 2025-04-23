@@ -7,68 +7,49 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body>
-    <div id="respostasContainer"></div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script>
+  <body data-page="index">
+    <main>
+      <div class="tusa-chaos">
+        <div class="word" style="top: 15%; left: 5%;">O</div>
+        <div class="word" style="top: 12%; left: 45%;">QUE</div>
+        <div class="word" style="top: 15%; left: 82%;">TE</div>
+        <div class="word" style="top: 75%; left: 5%;">DÁ</div>
+        <div class="word" style="top: 80%; left: 45%;">TUSA</div>
+        <div class="word" style="top: 77%; left: 85%;">?</div>
+      </div>      
+      <div class="container">
+        <form id="tusaForm">
+          <input type="text" id="answer" required /><br /><br />
+          <input type="submit" value="CHUTA" />
+        </form>
+      </div>
+    </main>
+
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
       const supabaseUrl = "https://jgcfulwuestsayktuiax.supabase.co";
-      const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnY2Z1bHd1ZXN0c2F5a3R1aWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwMzg4ODksImV4cCI6MjA1OTYxNDg4OX0.xL6zmXQ800BhqB9HvptMuYdlUj69O71KrWBt3JlvvLo";
-      const db = supabase.createClient(supabaseUrl, supabaseKey);
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnY2Z1bHd1ZXN0c2F5a3R1aWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwMzg4ODksImV4cCI6MjA1OTYxNDg4OX0.xL6zmXQ800BhqB9HvptMuYdlUj69O71KrWBt3JlvvLo"; // ← and this
+      const supabase = createClient(supabaseUrl, supabaseKey);
 
-      async function loadRespostas() {
-        const { data, error } = await db
+      const form = document.getElementById("tusaForm");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+
+        const answer = document.getElementById("answer").value;
+
+        const { data, error } = await supabase
           .from("respostas")
-          .select("*")
-          .order("id", { ascending: false });
-
-        const container = document.getElementById("respostasContainer");
-        container.innerHTML = "";
+          .insert([{ answer }]);
 
         if (error) {
-          container.innerText = "Erro a carregar respostas.";
+          alert("Erro ao enviar resposta.");
           console.error(error);
-          return;
+        } else {
+          window.location.href = "universo.html";
         }
-
-        if (data.length === 0) {
-          container.innerText = "AINDA SEM TUSA :()";
-          return;
-        }
-
-        data.forEach((item) => {
-          const wrapper = document.createElement("div");
-          wrapper.className = "bubble-wrapper";
-
-          const div = document.createElement("div");
-          div.className = "resposta";
-          div.textContent = item.answer;
-
-          const randomLeft = Math.random() * 80 + 5;
-          const randomTop = Math.random() * 60 + 20;
-          wrapper.style.left = `${randomLeft}%`;
-          wrapper.style.top = `${randomTop}%`;
-
-          const duration = Math.random() * 3 + 2;
-          wrapper.style.animationDuration = `${duration}s`;
-
-          div.addEventListener("mouseenter", () => {
-            wrapper.classList.add("paused");
-            wrapper.style.zIndex = 100;
-          });
-
-          div.addEventListener("mouseleave", () => {
-            wrapper.classList.remove("paused");
-            wrapper.style.zIndex = ""; 
-          });
-
-          wrapper.appendChild(div);
-          container.appendChild(wrapper);
-        });
-      }
-
-      loadRespostas();
-
-      loadRespostas();
+      });
     </script>
   </body>
 </html>
